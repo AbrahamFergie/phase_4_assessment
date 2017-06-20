@@ -7,9 +7,19 @@
 </head>
 <body>
 
-  <h1>Vinyl</h1>
+  <h1>Home Page</h1>
 
-  <h2>Records</h2>
+  <h2>Vinyl</h2>
+
+  <% if(false) { %>
+    <a href="/profile" >Profile<a>
+    <a href="/signout" >Sign-Out<a>
+  <% } else{ %>
+    <a href="/login" >Sign-In<a>
+    <a href="/signup" >Sign-Up<a>
+  <% } %>
+
+  <h3>Records</h3>
 
   <div class="album-list">
     <% albums.forEach(function(album) { %>
