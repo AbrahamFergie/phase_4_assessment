@@ -13,10 +13,9 @@ const query = function(sql, variables, callback){
   client.query(sql, variables, function(error, result){
     if (error){
       console.log('QUERY <- !!ERROR!!')
-      console.error(error)
       callback(error)
     }else{
-      console.log('QUERY <-', JSON.stringify(result.rows))
+      // console.log('QUERY <-', JSON.stringify(result.rows))
       callback(error, result.rows)
     }
   })
@@ -30,7 +29,22 @@ const getAlbumsByID = function(albumID, callback) {
   query("SELECT * FROM albums WHERE id = $1", [albumID], callback)
 }
 
+const getUser = function(username, password, callback){
+  query("SELECT name, email FROM users WHERE name = $1 AND password = $2", [username, password], callback)
+}
+
+const getUserByName = function(name, callback){
+  query("SELECT name, email FROM users WHERE name = $1", [name], callback)
+}
+
+const newUser = function(user, email, password, date_added, callback){
+  query("INSERT INTO users(name, email, password, date_added) VALUES($1, $2, $3, $4) RETURNING *", [user, email, password, date_added], callback)
+}
+
 module.exports = {
   getAlbums,
-  getAlbumsByID
+  getAlbumsByID,
+  getUser,
+  getUserByName,
+  newUser
 }

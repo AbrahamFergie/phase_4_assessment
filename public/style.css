@@ -3,3 +3,50 @@ html, body {
   padding: 0;
   width: 100vw;
 }
+body {
+  padding: 8px;
+  border: 2px solid #1c1c1c;
+}
+.header {
+  display: flex;
+  justify-content: flex-start;
+}
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.album-view {
+  margin-left: 2%;
+}
+.link1 {
+  position: absolute;
+  right: 5%;
+}
+.link2 {
+  position: absolute;
+  right: 10%;
+}
+.link3 {
+  position: absolute;
+  right: 0.7%;
+}
+.reviews {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.new-review-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.review-text-area {
+  height: 20em;
+  width: 50em;
+}
+.review-submit-button {
+  margin-top: 10px;
+}

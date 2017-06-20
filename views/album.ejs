@@ -3,13 +3,20 @@
 <head>
   <title>Vinyl : <%= album.title %></title>
   <link rel="stylesheet" type="text/css" href="/style.css">
+
   <script type="text/javascript" src="/script.js"></script>
 </head>
 <body>
 
   <h1><%= album.title %></h1>
+  <hr>
+  <a class="link2" href="/">Home</a>
+  <a class="link1" href="/profile">Profile</a>
+  <a class="link3" href="/logout">Logout</a>
   <em>by <%= album.artist %></em>
+  <em>by <%= album.id %></em>
 
+  <a href="/album/<%= album.id %>/review">Add A Review</a>
   <h2>Reviews</h2>
 
   <!-- TODO: implement album reviews -->
