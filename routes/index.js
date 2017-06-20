@@ -6,13 +6,17 @@ const database = require('../database')
 // const passport = require('../config/passport')
 const router = express.Router()
 
-router.get('/', (request, response) => {
-  console.log("=====response.user======", response)
+router.get('/', (request, response, next) => {
+  var name = ''
+  console.log("===========", request.user)
+  if(request.user){
+    name = request.user[0]
+  }
   database.getAlbums((error, albums) => {
     if (error) {
       response.status(500).render('error', { error: error })
     } else {
-      response.render('index', { albums: albums })
+      response.render('index', { albums: albums, name })
     }
   })
 })
@@ -28,6 +32,11 @@ router.get('/albums/:albumID', (request, response) => {
       response.render('album', { album: album })
     }
   })
+})
+
+router.get('/album/:albumId/review', (request, response) => {
+  console.log(request)
+  response.render('add-review')
 })
 
 router.get('/login', function(req, res) {
@@ -48,7 +57,10 @@ router.get('/signup', function(req, res) {
 
 router.post('/signup', function(req, res) {
   let { username, email, password } = req.body
-  database.newUser(username, email, password, (error, profile) => {
+  let date = new Date()
+  date = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+  database.newUser(username, email, password, date, (error, profile) => {
+    console.log("=====profile======", profile)
     if(error) {
       res.render('signup')
     }else {
@@ -63,6 +75,7 @@ router.post('/signup', function(req, res) {
 })
 
 router.get('/profile', isLoggedIn, function(req, res) {
+  console.log("=====req.user======", req.user)
    res.render('profile.ejs', {
        user : req.user
    })

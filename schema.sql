@@ -12,5 +12,12 @@ CREATE TABLE users (
   id SERIAL,
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL
+  password VARCHAR(255) NOT NULL,
+  date_added VARCHAR(255) NOT NULL
+)
+
+DROP TABLE IF EXISTS reviews
+
+CREATE TABLE reviews (
+
 )

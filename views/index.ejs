@@ -3,31 +3,41 @@
 <head>
   <title>Vinyl</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
+
   <script type="text/javascript" src="/script.js"></script>
 </head>
 <body>
 
-  <h1>Home Page</h1>
+  <h3 class="header">Home Page</h3>
 
-  <h2>Vinyl</h2>
+  <hr>
 
-  <% if(false) { %>
-    <a href="/profile" >Profile<a>
-    <a href="/signout" >Sign-Out<a>
+  <% if(name) { %>
+    <div class="nav">
+      <h3 class="left-element">Vinyl</h3>
+      <a class="link2" href="/profile" >Profile<a>&nbsp
+      <a class="link1" href="/logout" >Logout<a>
+    </div>
   <% } else{ %>
-    <a href="/login" >Sign-In<a>
-    <a href="/signup" >Sign-Up<a>
+    <div class="nav">
+      <h2 class="left-element">Vinyl</h2>
+      <a class="link2" href="/login" >Sign-In<a>&nbsp
+      <a class="link1" href="/signup" >Sign-Up<a>
+    </div>
   <% } %>
+  <hr>
 
-  <h3>Records</h3>
+  <div class="album-view">
+    <h3>Records</h3>
 
-  <div class="album-list">
-    <% albums.forEach(function(album) { %>
-      <div>
-        <h5><a href="/albums/<%= album.id %>"><%= album.title %></a></h5>
-        <span><%= album.artist %></span>
-      </div>
-    <% }) %>
+    <div class="album-list">
+      <% albums.forEach(function(album) { %>
+        <div>
+          <h5><a href="/albums/<%= album.id %>"><%= album.title %></a></h5>
+          <span><%= album.artist %></span>
+        </div>
+      <% }) %>
+    </div>
   </div>
 
 </body>
