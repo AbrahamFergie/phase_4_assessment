@@ -5,8 +5,8 @@
   <script type="text/javascript" src="/script.js"></script>
 </head>
 <body>
-  <form class="new-review-form" action="/add" method="post">
-    <textarea class="review-text-area" type="text" name="review"></textarea>
+  <form class="new-review-form" action="/album/<%= albumId %>/review" method="post">
+    <textarea class="review-text-area" type="text" name="review" required></textarea>
     <input class="review-submit-button" type="submit" value="Submit Review">
   </form>
 </body>

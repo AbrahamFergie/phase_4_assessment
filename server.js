@@ -39,7 +39,6 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   }, function(username, password, done){
     database.getUser(username, password, (error, user) => {
-      console.log("=====user======", user)
       if (error) {
         return done(null, error)
       }
@@ -47,7 +46,6 @@ passport.use(new LocalStrategy({
         return done(null, user[0])
       }
     })
-    console.log("=====username======", username)
     return done(null, username)
   }
 ))
