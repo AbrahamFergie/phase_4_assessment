@@ -1,5 +1,9 @@
 # Vinyl
 
+### Specs Readme located here
+
+https://gist.github.com/AbrahamFergie/095a7ed1ce7bed224295a3047a2a38c2
+
 A community for record enthusiasts to review their favorite albums.
 
 Part of the application has already been built for you. Your job is to take it to completion.
