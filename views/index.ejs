@@ -26,7 +26,7 @@
     </div>
   <% } %>
   <hr>
-
+  <img class="home-page-image" src="https://ichef.bbci.co.uk/images/ic/640xn/p04l2y11.jpg"></img>
   <div class="album-view">
     <h3>Records</h3>
 
@@ -37,10 +37,12 @@
           <span><%= album.artist %></span>
         </div>
       <% }) %>
-      <p><%= reviews %></p>
-      <% reviews.forEach(function(review){ %>
-        <p><%= review %></p>
-      <% }) %>
+
+      <div class="review-list">
+        <% messages.forEach(function(review) { %>
+          <span><strong>review:&nbsp</strong><%= review.message %>&nbsp <strong>username:&nbsp<%= review.name %></strong></span>
+          <% }) %>
+        </div>
     </div>
   </div>
 

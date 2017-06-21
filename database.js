@@ -69,6 +69,10 @@ const checkUser = function(userEmail, callback){
   query("SELECT email FROM users WHERE email = $1", [userEmail], callback)
 }
 
+const getReviews = function(callback){
+  query("SELECT message, users.name, reviews.date_added FROM reviews JOIN users ON reviews.user_id=users.id ORDER BY reviews.date_added DESC", [], callback)
+}
+
 module.exports = {
   newUser,
   getAlbums,
@@ -81,5 +85,6 @@ module.exports = {
   getReviewsForUser,
   getReviewsByAlbumId,
   deleteMessage,
-  checkUser
+  checkUser,
+  getReviews
 }
