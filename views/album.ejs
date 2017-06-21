@@ -16,11 +16,15 @@
   <%= album.id %>
 
   <a href="/album/<%= album.id %>/review">Add A Review</a>
+  <hr>
   <h2>Reviews</h2>
-  <% for(var i = 0; i < reviews.length; i++){ %>
-    <div>
-      <span><strong>review:&nbsp</strong><%= reviews[i] %>&nbsp <strong>username:&nbsp<%= userNames[i] %></strong></span>
-    </div>
-  <% } %>
+  <div class="album-review">
+    <% for(var i = 0; i < reviews.length; i++){ %>
+      <div>
+        <span><strong>review:&nbsp</strong><%= reviews[i] %>&nbsp <strong>username:&nbsp<%= userNames[i] %></strong></span>
+      </div>
+      <hr>
+      <% } %>
+  </div>
 </body>
 </html>

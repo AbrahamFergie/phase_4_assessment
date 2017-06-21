@@ -42,11 +42,13 @@ passport.use(new LocalStrategy({
       if (error) {
         return done(null, error)
       }
+      if(user.length <= 0){
+        return done(null, false)
+      }
       if(!error) {
-        return done(null, user[0])
+        return done(null, username)
       }
     })
-    return done(null, username)
   }
 ))
 

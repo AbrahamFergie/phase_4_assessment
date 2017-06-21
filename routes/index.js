@@ -15,18 +15,14 @@ router.get('/', (request, response, next) => {
     if (error) {
       response.status(500).render('error', { error: error })
     } else {
-      let reviews = []
-      albums.forEach(album => {
-        database.getReviewsByAlbumId(album.id, (error, messages) => {
-          if(error){
-            response.status(500).render('error', { error: error })
-          }else {
-            reviews.push(messages)
-          }
-        })
-
+      database.getReviews((error, messages) => {
+        if(error){
+          response.status(500).render('error', { error: error })
+        }else {
+          messages = messages.slice(0,3)
+          response.render('index', { albums: albums, name, messages })
+        }
       })
-      response.render('index', { albums: albums, name, reviews })
     }
   })
 })
@@ -40,7 +36,6 @@ router.get('/albums/:albumID', (request, response) => {
       const album = albums[0]
       const userNames = albums.map(album => {return album.name})
       const reviews = albums.map(album => {return album.message})
-      console.log("=====albums======", userNames)
       response.render('album', { album, reviews, userNames })
     }
   })
@@ -48,7 +43,14 @@ router.get('/albums/:albumID', (request, response) => {
 
 router.get('/album/:albumId/review', (request, response) => {
   let { albumId } = request.params
-  response.render('add-review', {albumId})
+  if(request.session.passport){
+    database.getAlbumTitleById(albumId, (error, title) => {
+      let albumTitle = title[0].title
+      response.render('add-review', {albumId, albumTitle})
+    })
+  }else{
+    response.redirect('/album/' + albumId + '/review')
+  }
 })
 
 router.post('/album/:albumId/review', (request, response) => {
@@ -117,7 +119,6 @@ router.post('/signup', function(request, response) {
           result.name = profile[0].name
           result.email = profile[0].email
           result.password = profile[0].password
-          // console.log("=====result======", result)
           response.redirect('/')
         }
       })
