@@ -10,7 +10,7 @@ VALUES
 INSERT INTO
 users (name, email, password, date_added)
 VALUES
-('derp', 'derpyder@gmail.com', 'derping', '18:24:16')
+('derp', 'derpyder@gmail.com', 'derping', '1:15:18:24:16')
 ;
 
 INSERT INTO

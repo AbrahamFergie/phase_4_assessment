@@ -26,7 +26,7 @@ const getAlbums = function(callback) {
 }
 
 const getAlbumsByID = function(albumID, callback) {
-  query("SELECT albums.title, albums.id, albums.artist, reviews.message FROM albums JOIN reviews ON reviews.album_id=albums.id WHERE albums.id = $1 ORDER BY reviews.date_added DESC", [albumID], callback)
+  query("SELECT users.name, albums.title, albums.id, albums.artist, reviews.message FROM albums JOIN reviews ON reviews.album_id=albums.id JOIN users ON users.id=reviews.user_id WHERE albums.id = $1 ORDER BY reviews.date_added DESC", [albumID], callback)
 }
 
 const getUser = function(username, password, callback){

@@ -37,10 +37,11 @@ router.get('/albums/:albumID', (request, response) => {
     if (error) {
       response.status(500).render('error', { error: error })
     } else {
-      console.log("=====albums======", albums)
       const album = albums[0]
+      const userNames = albums.map(album => {return album.name})
       const reviews = albums.map(album => {return album.message})
-      response.render('album', { album, reviews })
+      console.log("=====albums======", userNames)
+      response.render('album', { album, reviews, userNames })
     }
   })
 })
@@ -99,7 +100,7 @@ router.get('/signup', function(request, response) {
 router.post('/signup', function(request, response) {
   let { username, email, password } = request.body
   let date = new Date()
-  date = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+  date = date.getMonth() + ':' + date.getDay() + ':' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
   database.checkUser(email, (error, result) => {
     if(error){
       response.status(500).render('error', { error: error })
