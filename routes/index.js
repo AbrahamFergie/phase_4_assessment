@@ -29,6 +29,12 @@ router.get('/', (request, response, next) => {
 
 router.get('/albums/:albumID', (request, response) => {
   const { albumID } = request.params
+  let userRetrieval = null
+  if(request.session.passport){
+    let { user } = request.session.passport
+    userRetrieval = user
+  }
+  let userName = userRetrieval || ''
   database.getAlbumsByID(albumID, (error, albums) => {
     if (error) {
       response.status(500).render('error', { error: error })
@@ -36,12 +42,12 @@ router.get('/albums/:albumID', (request, response) => {
       const album = albums[0]
       const userNames = albums.map(album => {return album.name})
       const reviews = albums.map(album => {return album.message})
-      response.render('album', { album, reviews, userNames })
+      response.render('album', { album, reviews, userNames, userName })
     }
   })
 })
 
-router.get('/album/:albumId/review', (request, response) => {
+router.get('/album/:albumId/review', isLoggedIn, (request, response) => {
   let { albumId } = request.params
   if(request.session.passport){
     database.getAlbumTitleById(albumId, (error, title) => {
@@ -49,7 +55,7 @@ router.get('/album/:albumId/review', (request, response) => {
       response.render('add-review', {albumId, albumTitle})
     })
   }else{
-    response.redirect('/album/' + albumId + '/review')
+    response.redirect('/')
   }
 })
 

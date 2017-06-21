@@ -9,9 +9,15 @@
   <hr>
   <h1><%= album.title %></h1>
   <hr>
-  <a class="link2" href="/">Home</a>
-  <a class="link1" href="/profile">Profile</a>
-  <a class="link3" href="/logout">Logout</a>
+  <% if(userName.length > 0){ %>
+    <a class="link2" href="/">Home</a>
+    <a class="link1" href="/profile">Profile</a>
+    <a class="link3" href="/logout">Logout</a>
+  <% }else{ %>
+    <a class="link2" href="/">Home</a>
+    <a class="link1" href="/login">Sign-In</a>
+    <a class="link3" href="/signup">Sign-Up</a>
+  <% } %>
   <em>by <%= album.artist %></em>
   <%= album.id %>
 
