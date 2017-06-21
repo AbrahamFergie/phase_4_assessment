@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vinyl : <%= album.title %></title>
   <link rel="stylesheet" type="text/css" href="/style.css">
-
   <script type="text/javascript" src="/script.js"></script>
 </head>
 <body>
-
+  <h2>Hot Albums</h2>
+  <hr>
   <h1><%= album.title %></h1>
   <hr>
   <a class="link2" href="/">Home</a>
@@ -18,13 +17,10 @@
 
   <a href="/album/<%= album.id %>/review">Add A Review</a>
   <h2>Reviews</h2>
-  <% reviews.forEach(function(review){ %>
+  <% for(var i = 0; i < reviews.length; i++){ %>
     <div>
-      <span><%= review %></span>
+      <span><strong>review:&nbsp</strong><%= reviews[i] %>&nbsp <strong>username:&nbsp<%= userNames[i] %></strong></span>
     </div>
-  <% }) %>
-
-  <!-- TODO: implement album reviews -->
-
+  <% } %>
 </body>
 </html>
