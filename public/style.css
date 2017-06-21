@@ -87,3 +87,14 @@ body {
   display: flex;
   justify-content: center;
 }
+.profile-pic {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1c1c1c;
+  height: 185px;
+  width: 185px;
+  left: 27%;
+  color: #fafafa;
+}
