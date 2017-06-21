@@ -14,10 +14,15 @@
   <a class="link1" href="/profile">Profile</a>
   <a class="link3" href="/logout">Logout</a>
   <em>by <%= album.artist %></em>
-  <em>by <%= album.id %></em>
+  <%= album.id %>
 
   <a href="/album/<%= album.id %>/review">Add A Review</a>
   <h2>Reviews</h2>
+  <% reviews.forEach(function(review){ %>
+    <div>
+      <span><%= review %></span>
+    </div>
+  <% }) %>
 
   <!-- TODO: implement album reviews -->
 

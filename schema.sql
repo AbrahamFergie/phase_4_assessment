@@ -1,23 +1,28 @@
-DROP TABLE IF EXISTS albums;
 
-CREATE TABLE albums (
-  id SERIAL,
-  title VARCHAR(255) NOT NULL,
-  artist VARCHAR(255) NOT NULL
+CREATE TABLE albums
+(
+  id SERIAL PRIMARY KEY,
+  title VARCHAR NOT NULL,
+  artist VARCHAR NOT NULL
 );
 
-DROP TABLE IF EXISTS users;
+CREATE TABLE users
+(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  email VARCHAR NOT NULL,
+  password VARCHAR NOT NULL,
+  date_added VARCHAR NOT NULL
+);
 
-CREATE TABLE users (
-  id SERIAL,
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  date_added VARCHAR(255) NOT NULL
-)
-
-DROP TABLE IF EXISTS reviews
-
-CREATE TABLE reviews (
-
-)
+CREATE TABLE reviews
+(
+  id SERIAL PRIMARY KEY,
+  album_title VARCHAR NOT NULL,
+  message VARCHAR NOT NULL,
+  user_id INT NOT NULL,
+  album_id INT NOT NULL,
+  date_added VARCHAR NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (album_id) REFERENCES albums(id)
+);

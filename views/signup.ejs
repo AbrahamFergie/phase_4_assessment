@@ -7,11 +7,13 @@
 </head>
 <body>
   <h1>Sign-Up</h1>
-
+  <% if(responseMessage){ %>
+    <p><%= responseMessage %></p>
+  <% } %>
   <form action="/signup" method="post">
-    Name&nbsp<input type="text" name="username" placeholder="Your Name Here">
-    Email&nbsp<input type="email" name="email" placeholder="Email Address">
-    Password&nbsp<input type="password" name="password" placeholder="Password">
+    Name&nbsp<input type="text" name="username" placeholder="Your Name Here" required>
+    Email&nbsp<input type="email" name="email" placeholder="Email Address" required>
+    Password&nbsp<input type="password" name="password" placeholder="Password" required>
     <input type="submit" value="Submit">
   </form>
 

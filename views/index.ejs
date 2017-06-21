@@ -37,6 +37,10 @@
           <span><%= album.artist %></span>
         </div>
       <% }) %>
+      <p><%= reviews %></p>
+      <% reviews.forEach(function(review){ %>
+        <p><%= review %></p>
+      <% }) %>
     </div>
   </div>
 
