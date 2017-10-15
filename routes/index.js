@@ -6,12 +6,13 @@ const database = require('../database')
 const router = express.Router()
 
 router.get('/', (request, response, next) => {
+  const numberOfAlbums = 10
   var name = ''
   if(request.user){
     name = request.user[0]
   }
 
-  database.getAlbums((error, albums) => {
+  database.getAlbums(numberOfAlbums, (error, albums) => {
     if (error) {
       response.status(500).render('error', { error: error })
     } else {
@@ -20,7 +21,7 @@ router.get('/', (request, response, next) => {
           response.status(500).render('error', { error: error })
         }else {
           messages = messages.slice(0,3)
-          response.render('index', { albums: albums, name, messages })
+          response.render('index', { albums, name, messages })
         }
       })
     }
@@ -89,7 +90,7 @@ router.post('/album/:albumId/review', (request, response) => {
 })
 
 router.get('/login', function(request, response) {
-   response.render('login.ejs', { message: request.flash('loginMessage') })
+  response.render('login', {message: request.flash().session.flash})
 })
 
 router.post('/login',

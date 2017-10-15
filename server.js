@@ -18,17 +18,16 @@ require('ejs')
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(session({ secret: 'basic-secret' }))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(flash())
-
 app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({ secret: 'basic-secret' }))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
 app.use('/', index)
 app.use((request, response) => {
   response.status(404).render('not_found')
@@ -36,14 +35,15 @@ app.use((request, response) => {
 
 passport.use(new LocalStrategy({
     usernameField: 'username',
-    passwordField: 'password'
-  }, function(username, password, done){
+    passwordField: 'password',
+    passReqToCallback: true
+  }, function(req, username, password, done){
     database.getUser(username, password, (error, user) => {
       if (error) {
-        return done(null, error)
+        return done(error)
       }
       if(user.length <= 0){
-        return done(null, false)
+        return done(null, false, req.flash('loginMessage', "Login Attempt Failed"))
       }
       if(!error) {
         return done(null, username)

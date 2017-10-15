@@ -21,8 +21,8 @@ const query = function(sql, variables, callback){
   })
 }
 
-const getAlbums = function(callback) {
-  query("SELECT id, title, artist FROM albums", [], callback)
+const getAlbums = function(number, callback) {
+  query("SELECT id, title, artist FROM albums LIMIT $1", [number], callback)
 }
 
 const getAlbumsByID = function(albumID, callback) {

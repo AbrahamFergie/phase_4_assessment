@@ -9,6 +9,11 @@
   <h2>Hot Albums</h2>
   <hr>
   <h1>Login</h1>
+  <% if(message){ %>
+    <% if(message[1]){ %>
+      <p><%=message[1].message %></p>
+    <% } %>
+  <% } %>
   <form action="/login" method="post">
     Name&nbsp<input type="text" name="username" placeholder="Your Name Here">
     Password&nbsp<input type="password" name="password" placeholder="Password">
